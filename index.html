@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages for Jasmin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding-top: 50px;
+        }
+        .message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        #catButton {
+            padding: 20px;
+            font-size: 20px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        #catButton:hover {
+            background-color: #ff9900;
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            width: 50px;
+            height: 50px;
+            animation: bubbleAnimation 3s ease-in-out infinite;
+        }
+        @keyframes bubbleAnimation {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px);
+                opacity: 0;
+            }
+        }
+        .emoji {
+            font-size: 30px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="message" id="message1">Achhi ho tum</div>
+    <div class="message" id="message2">Kitni acchi ho tum</div>
+    <div class="message" id="message3">Bohot acchi ho tum</div>
+    <div class="message" id="message4">Sach me achhi ho tum</div>
+    <div class="message" id="message5">Bs stickers bohot kharab bhejti ho tum <span class="emoji">😅</span></div>
+    <div class="message" id="message6">Bs ab kitni tareef sunogi khudki so jao ab, good night <span class="emoji">💖</span></div>
+
+    <button id="catButton">🐱 Click me!</button>
+
+    <script>
+        let currentMessage = 0;
+        const messages = document.querySelectorAll('.message');
+        const catButton = document.getElementById('catButton');
+
+        function showMessage() {
+            if (currentMessage < messages.length) {
+                messages[currentMessage].style.opacity = 1;
+                currentMessage++;
+            }
+        }
+
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            document.body.appendChild(bubble);
+
+            const randomLeft = Math.random() * window.innerWidth;
+            bubble.style.left = `${randomLeft}px`;
+        }
+
+        catButton.addEventListener('click', () => {
+            showMessage();
+            createBubble();
+        });
+
+        // Initial message display
+        showMessage();
+    </script>
+
+</body>
+</html>
